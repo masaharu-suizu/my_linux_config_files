@@ -11,6 +11,19 @@ _ssh_completion(){
 }
 complete -F _ssh_completion ssh
 
+mkdir -p /tmp/`date +%Y%m%d`
+SSH_AGENT_FILE="/tmp/`date +%Y%m%d`/.ssh-agent"
+SSH_PRIVATE_KEY="${HOME}/.ssh/id_rsa"
+if [ ! -f "${SSH_PRIVATE_KEY}" ]; then
+    ssh-keygen -t rsa -b 4096
+fi
+test -f "${SSH_AGENT_FILE}" && source "${SSH_AGENT_FILE}"
+if ! ssh-add -l > /dev/null 2>&1; then
+    ssh-agent > "${SSH_AGENT_FILE}"
+    source "${SSH_AGENT_FILE}"
+    ssh-add "${SSH_PRIVATE_KEY}"
+fi
+
 if [ ! -f ${HOME}/git-completion.bash ]; then
     wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
 fi
