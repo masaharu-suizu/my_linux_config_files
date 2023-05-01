@@ -32,11 +32,3 @@ source ${HOME}/git-completion.bash
 if [ ! -f ${HOME}/git-prompt.sh ]; then
     wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
 fi
-source ${HOME}/git-prompt.sh
-
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUPSTREAM=auto
-
-PROMPT_COMMAND='__git_ps1 "[\u@\h \w" "]\\\$ "'
