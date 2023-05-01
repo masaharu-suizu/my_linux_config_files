@@ -1,3 +1,5 @@
+# How to set up
+
 ```
 $ cd ~
 $ git clone https://github.com/masaharu-suizu/my_linux_config_files.git
